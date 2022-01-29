@@ -1,3 +1,5 @@
+export const NUMBER_OF_TRIES = 6;
+
 export const colors = {
   black: "#1F2632",
   darkgrey: "#3A3A3D",
