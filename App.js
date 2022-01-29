@@ -11,6 +11,7 @@ import {
 import { colors, CLEAR, ENTER, colorsToEmoji } from "./src/constants";
 import Keyboard from "./src/components/Keyboard";
 import * as Clipboard from "expo-clipboard";
+import words from "./words";
 
 const NUMBER_OF_TRIES = 6;
 
@@ -27,51 +28,6 @@ const getDayOfTheYear = () => {
   return day;
 };
 const dayOfTheYear = getDayOfTheYear();
-const words = [
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-  "hello",
-  "world",
-];
 
 export default function App() {
   const word = words[dayOfTheYear];
@@ -103,13 +59,14 @@ export default function App() {
   };
 
   const shareScore = () => {
-    const textMap = rows
+    const shareRows = rows
       .map((row, i) =>
         row.map((cell, j) => colorsToEmoji[getCellBGColor(i, j)]).join("")
       )
-      .filter((row) => row)
-      .join("\n");
-    const textToShare = `Wordle \n${textMap}`;
+      .filter((row) => row);
+
+    const textMap = shareRows.join("\n");
+    const textToShare = `Progle ${dayOfTheYear} ${shareRows.length}/${NUMBER_OF_TRIES} \n${textMap}\n\n #Progle: Get in on  and ▶️ `;
     Clipboard.setString(textToShare);
     Alert.alert("Copied successfully", "Share your score on you social media");
   };
@@ -190,7 +147,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <StatusBar style="light" />
 
-      <Text style={styles.title}>WORDLE</Text>
+      <Text style={styles.title}>PROGLE</Text>
 
       <ScrollView style={styles.map}>
         {rows.map((row, i) => (
@@ -214,6 +171,11 @@ export default function App() {
           </View>
         ))}
       </ScrollView>
+
+      <Text style={styles.creditH1}>
+        Made with 💛 by developers for developers
+      </Text>
+      <Text style={styles.creditH2}>www.notjust.dev</Text>
 
       <Keyboard
         onKeyPressed={onKeyPressed}
@@ -261,5 +223,12 @@ const styles = StyleSheet.create({
     color: colors.lightgrey,
     fontWeight: "bold",
     fontSize: 28,
+  },
+  creditH1: {
+    color: colors.lightgrey,
+  },
+  creditH2: {
+    color: colors.grey,
+    margin: 5,
   },
 });

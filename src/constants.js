@@ -1,15 +1,15 @@
 export const colors = {
-  black: "#121214",
+  black: "#1F2632",
   darkgrey: "#3A3A3D",
   grey: "#818384",
   lightgrey: "#D7DADC",
-  primary: "#538D4E",
-  secondary: "#B59F3B",
+  primary: "#4a8f52",
+  secondary: "#e89736",
 };
 
 export const colorsToEmoji = {
   [colors.darkgrey]: "⬛",
-  [colors.primary]: "🟩",
+  [colors.primary]: "🧑‍💻",
   [colors.secondary]: "🟧",
 };
 
